@@ -1,8 +1,14 @@
 #include <pebble.h>
 #include "layers/tick_layer.h"
+#include "layers/time_layer.h"
 
 static Window *s_window;
 static TickLayer *s_tick_layer;
+static TimeLayer *s_time_layer;
+
+static void tick_handler(struct tm* tick_time, TimeUnits units_changed) {
+    layer_mark_dirty(s_time_layer);
+}
 
 static void window_load(Window *window) {
     Layer *root_layer = window_get_root_layer(window);
@@ -10,9 +16,17 @@ static void window_load(Window *window) {
 
     s_tick_layer = tick_layer_create(bounds);
     layer_add_child(root_layer, s_tick_layer);
+
+    s_time_layer = time_layer_create(bounds);
+    layer_add_child(root_layer, s_time_layer);
+
+    tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
 }
 
 static void window_unload(Window *window) {
+    tick_timer_service_unsubscribe();
+
+    time_layer_destroy(s_time_layer);
     tick_layer_destroy(s_tick_layer);
 }
 
