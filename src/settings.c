@@ -9,10 +9,10 @@ Settings *settings_load() {
     if (version == 0) {
         settings->color_background = GColorBlack;
         settings->color_ticks = GColorLightGray;
-        settings->color_hour_hand = GColorRed;
+        settings->color_hour_hand = PBL_IF_COLOR_ELSE(GColorRed, GColorWhite);
         settings->color_minute_hand = GColorLightGray;
         settings->color_second_hand = GColorWhite;
-        settings->color_battery = GColorIslamicGreen;
+        settings->color_battery = PBL_IF_COLOR_ELSE(GColorIslamicGreen, GColorDarkGray);
         settings_save(settings);
     } else {
         persist_read_data(SETTINGS_DATA_KEY, settings, sizeof(Settings));
