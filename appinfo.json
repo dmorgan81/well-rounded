@@ -1,0 +1,16 @@
+{
+  "uuid": "a519372f-2d7e-4c54-b5cd-55f969a56257",
+  "shortName": "Well Rounded",
+  "longName": "Well Rounded",
+  "companyName": "David Morgan",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["basalt", "chalk"],
+  "enableMultiJS": true,
+  "watchapp": {
+    "watchface": true
+  },
+  "resources": {
+    "media": []
+  }
+}
