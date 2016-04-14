@@ -5,6 +5,7 @@ typedef struct {
     int32_t max;
     int32_t value;
     uint16_t inset;
+    GColor color;
 } Internal;
 
 void radial_layer_update_proc(Layer *layer, GContext *ctx) {
@@ -13,7 +14,7 @@ void radial_layer_update_proc(Layer *layer, GContext *ctx) {
     Internal *internal = (Internal *) layer_get_data(layer);
 
     int32_t angle = TRIG_MAX_ANGLE * internal->value / internal->max;
-    graphics_context_set_fill_color(ctx, GColorWhite);
+    graphics_context_set_fill_color(ctx, internal->color);
     graphics_fill_radial(ctx, bounds, GOvalScaleModeFitCircle, internal->inset, 0, angle);
 }
 
@@ -26,6 +27,7 @@ RadialLayer *radial_layer_create(GRect frame) {
     internal->max = 0;
     internal->value = 0;
     internal->inset = 0;
+    internal->color = GColorWhite;
 
     return this;
 }
@@ -50,5 +52,11 @@ void radial_layer_set_max(RadialLayer *this, int32_t max) {
 void radial_layer_set_inset(RadialLayer *this, uint16_t inset) {
     logd("%s", __func__);
     ((Internal *) layer_get_data(this))->inset = inset;
+    layer_mark_dirty(this);
+}
+
+void radial_layer_set_color(RadialLayer *this, GColor color) {
+    logd("%s", __func__);
+    ((Internal *) layer_get_data(this))->color = color;
     layer_mark_dirty(this);
 }

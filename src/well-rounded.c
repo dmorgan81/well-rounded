@@ -1,10 +1,12 @@
 #include <pebble.h>
 #include "logging.h"
+#include "settings.h"
 #include "layers/tick_layer.h"
 #include "layers/time_layer.h"
 #include "layers/radial_layer.h"
 
 static Window *s_window;
+static Settings *s_settings;
 static TickLayer *s_tick_layer;
 static RadialLayer *s_batt_layer;
 static TimeLayer *s_time_layer;
@@ -21,15 +23,22 @@ static void batt_handler(BatteryChargeState charge) {
 
 static void window_load(Window *window) {
     logd("%s", __func__);
+    s_settings = settings_load();
+    window_set_background_color(window, s_settings->color_background);
+
     Layer *root_layer = window_get_root_layer(window);
     GRect bounds = layer_get_bounds(root_layer);
 
     s_tick_layer = tick_layer_create(bounds);
-    s_time_layer = time_layer_create(bounds);
+    tick_layer_set_color(s_tick_layer, s_settings->color_ticks);
 
-    s_batt_layer = radial_layer_create(grect_inset(bounds, GEdgeInsets(PBL_IF_ROUND_ELSE(75, 60))));
+    s_time_layer = time_layer_create(bounds);
+    time_layer_set_settings(s_time_layer, s_settings);
+
+    s_batt_layer = radial_layer_create(grect_inset(bounds, GEdgeInsets(PBL_IF_ROUND_ELSE(75, 55))));
     radial_layer_set_max(s_batt_layer, 100);
     radial_layer_set_inset(s_batt_layer, 30);
+    radial_layer_set_color(s_batt_layer, s_settings->color_battery);
 
     layer_add_child(root_layer, s_tick_layer);
     layer_add_child(root_layer, s_batt_layer);
@@ -49,6 +58,8 @@ static void window_unload(Window *window) {
     radial_layer_destroy(s_batt_layer);
     time_layer_destroy(s_time_layer);
     tick_layer_destroy(s_tick_layer);
+
+    settings_free(s_settings);
 }
 
 static void init(void) {
