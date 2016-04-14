@@ -1,6 +1,8 @@
+#include "../logging.h"
 #include "tick_layer.h"
 
 static void tick_layer_update_proc(Layer *layer, GContext *ctx) {
+    logd("%s", __func__);
     GRect bounds = layer_get_bounds(layer);
     GRect inset = grect_inset(bounds, GEdgeInsets(5));
 
@@ -16,11 +18,13 @@ static void tick_layer_update_proc(Layer *layer, GContext *ctx) {
 }
 
 TickLayer *tick_layer_create(GRect frame) {
+    logd("%s", __func__);
     TickLayer *this = layer_create(frame);
     layer_set_update_proc(this, tick_layer_update_proc);
     return this;
 }
 
 void tick_layer_destroy(TickLayer *this) {
+    logd("%s", __func__);
     layer_destroy(this);
 }

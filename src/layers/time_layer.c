@@ -1,3 +1,4 @@
+#include "../logging.h"
 #include "time_layer.h"
 #include "second_hand_layer.h"
 #include "minute_hand_layer.h"
@@ -10,6 +11,7 @@ typedef struct {
 } Internal;
 
 TimeLayer *time_layer_create(GRect frame) {
+    logd("%s", __func__);
     TimeLayer *this = layer_create_with_data(frame, sizeof(Internal));
     Internal *internal = (Internal *) layer_get_data(this);
 
@@ -26,6 +28,7 @@ TimeLayer *time_layer_create(GRect frame) {
 }
 
 void time_layer_destroy(TimeLayer *this) {
+    logd("%s", __func__);
     Internal *internal = (Internal *) layer_get_data(this);
 
     second_hand_layer_destroy(internal->second_hand_layer);

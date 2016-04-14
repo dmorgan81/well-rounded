@@ -1,6 +1,8 @@
+#include "../logging.h"
 #include "hour_hand_layer.h"
 
 static void hour_hand_layer_update_proc(Layer *layer, GContext *ctx) {
+    logd("%s", __func__);
     GRect bounds = layer_get_bounds(layer);
     GPoint center = grect_center_point(&bounds);
 
@@ -22,11 +24,13 @@ static void hour_hand_layer_update_proc(Layer *layer, GContext *ctx) {
 }
 
 HourHandLayer *hour_hand_layer_create(GRect frame) {
+    logd("%s", __func__);
     HourHandLayer *this = layer_create(frame);
     layer_set_update_proc(this, hour_hand_layer_update_proc);
     return this;
 }
 
 void hour_hand_layer_destroy(HourHandLayer *this) {
+    logd("%s", __func__);
     layer_destroy(this);
 }

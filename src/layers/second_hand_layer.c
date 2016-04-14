@@ -1,6 +1,8 @@
+#include "../logging.h"
 #include "second_hand_layer.h"
 
 void second_hand_layer_update_proc(Layer *layer, GContext *ctx) {
+    logd("%s", __func__);
     GRect bounds = layer_get_bounds(layer);
     GPoint center = grect_center_point(&bounds);
 
@@ -19,11 +21,13 @@ void second_hand_layer_update_proc(Layer *layer, GContext *ctx) {
 }
 
 SecondHandLayer *second_hand_layer_create(GRect frame) {
+    logd("%s", __func__);
     SecondHandLayer *this = layer_create(frame);
     layer_set_update_proc(this, second_hand_layer_update_proc);
     return this;
 }
 
 void second_hand_layer_destroy(SecondHandLayer *this) {
+    logd("%s", __func__);
     layer_destroy(this);
 }
