@@ -12,7 +12,11 @@ typedef struct {
 
 static int32_t angle_calc_minute_hand(Layer *layer, struct tm *t) {
     logd("%s", __func__);
+#ifdef DEMO
+    return TRIG_MAX_ANGLE * 50 / 60;
+#else
     return TRIG_MAX_ANGLE * t->tm_min / 60;
+#endif
 }
 
 static int16_t len_calc_minute_hand(Layer *layer, GRect *bounds) {
@@ -22,7 +26,11 @@ static int16_t len_calc_minute_hand(Layer *layer, GRect *bounds) {
 
 static int32_t angle_calc_hour_hand(Layer *layer, struct tm *t) {
     logd("%s", __func__);
+#ifdef DEMO
+    return TRIG_MAX_ANGLE * ((((1 % 12) * 6) + (50 / 10))) / (12 * 6);
+#else
     return TRIG_MAX_ANGLE * ((((t->tm_hour % 12) * 6) + (t->tm_min / 10))) / (12 * 6);
+#endif
 }
 
 static int16_t len_calc_hour_hand(Layer *layer, GRect *bounds) {
@@ -32,7 +40,11 @@ static int16_t len_calc_hour_hand(Layer *layer, GRect *bounds) {
 
 static int32_t angle_calc_second_hand(Layer *layer, struct tm *t) {
     logd("%s", __func__);
+#ifdef DEMO
+    return TRIG_MAX_ANGLE * 30 / 60;
+#else
     return TRIG_MAX_ANGLE * t->tm_sec / 60;
+#endif
 }
 
 static int16_t len_calc_second_hand(Layer *layer, GRect *bounds) {

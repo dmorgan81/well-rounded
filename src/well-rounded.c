@@ -46,6 +46,11 @@ static void health_handler(HealthEventType event, void *context) {
             radial_layer_set_value(s_health_layer, sum);
         }
     }
+
+#ifdef DEMO
+    radial_layer_set_max(s_health_layer, 100);
+    radial_layer_set_value(s_health_layer, 60);
+#endif
 }
 #endif
 
