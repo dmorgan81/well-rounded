@@ -1,6 +1,7 @@
 #include <pebble.h>
 #include "logging.h"
 #include "settings.h"
+#include "sync.h"
 #include "layers/tick_layer.h"
 #include "layers/time_layer.h"
 #include "layers/radial_layer.h"
@@ -21,9 +22,64 @@ static void batt_handler(BatteryChargeState charge) {
     radial_layer_set_value(s_batt_layer, charge.charge_percent);
 }
 
+static void sync_handler(const uint32_t key, const Tuple *new_tuple, const Tuple *old_tuple, void *context) {
+    logd("%s", __func__);
+    if (new_tuple == NULL || old_tuple == NULL) {
+        return;
+    }
+    switch (key) {
+        case AppKeyColorBackground:
+            s_settings->color_background = GColorFromHEX(new_tuple->value->uint32);
+            window_set_background_color(s_window, s_settings->color_background);
+            break;
+        case AppKeyColorTicks:
+            s_settings->color_ticks = GColorFromHEX(new_tuple->value->uint32);
+            tick_layer_set_color(s_tick_layer, s_settings->color_ticks);
+            break;
+        case AppKeyColorHandHour:
+            s_settings->color_hour_hand = GColorFromHEX(new_tuple->value->uint32);
+            time_layer_set_settings(s_time_layer, s_settings);
+            break;
+        case AppKeyColorHandMinute:
+            s_settings->color_minute_hand = GColorFromHEX(new_tuple->value->uint32);
+            time_layer_set_settings(s_time_layer, s_settings);
+            break;
+        case AppKeyColorHandSecond:
+            s_settings->color_second_hand = GColorFromHEX(new_tuple->value->uint32);
+            time_layer_set_settings(s_time_layer, s_settings);
+            break;
+        case AppKeyColorBattery:
+            s_settings->color_battery = GColorFromHEX(new_tuple->value->uint32);
+            radial_layer_set_color(s_batt_layer, s_settings->color_battery);
+            break;
+        case AppKeyShowTicks:
+            s_settings->show_ticks = new_tuple->value->uint8;
+            layer_set_hidden(s_tick_layer, !s_settings->show_ticks);
+            break;
+        case AppKeyShowSecondHand:
+            s_settings->show_second_hand = new_tuple->value->uint8;
+            time_layer_set_settings(s_time_layer, s_settings);
+            tick_timer_service_subscribe(s_settings->show_second_hand ? SECOND_UNIT : MINUTE_UNIT, tick_handler);
+            break;
+        case AppKeyShowBattery:
+            s_settings->show_battery = new_tuple->value->uint8;
+            layer_set_hidden(s_batt_layer, !s_settings->show_battery);
+            if (s_settings->show_battery) {
+                batt_handler(battery_state_service_peek());
+                battery_state_service_subscribe(batt_handler);
+            } else {
+                battery_state_service_unsubscribe();
+            }
+            break;
+    }
+    settings_save(s_settings);
+}
+
 static void window_load(Window *window) {
     logd("%s", __func__);
     s_settings = settings_load();
+    sync_init(s_settings, sync_handler);
+
     window_set_background_color(window, s_settings->color_background);
 
     Layer *root_layer = window_get_root_layer(window);
@@ -31,6 +87,7 @@ static void window_load(Window *window) {
 
     s_tick_layer = tick_layer_create(bounds);
     tick_layer_set_color(s_tick_layer, s_settings->color_ticks);
+    layer_set_hidden(s_tick_layer, !s_settings->show_ticks);
 
     s_time_layer = time_layer_create(bounds);
     time_layer_set_settings(s_time_layer, s_settings);
@@ -39,15 +96,18 @@ static void window_load(Window *window) {
     radial_layer_set_max(s_batt_layer, 100);
     radial_layer_set_inset(s_batt_layer, 30);
     radial_layer_set_color(s_batt_layer, s_settings->color_battery);
+    layer_set_hidden(s_batt_layer, !s_settings->show_battery);
 
     layer_add_child(root_layer, s_tick_layer);
     layer_add_child(root_layer, s_batt_layer);
     layer_add_child(root_layer, s_time_layer);
 
-    tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
+    tick_timer_service_subscribe(s_settings->show_second_hand ? SECOND_UNIT : MINUTE_UNIT, tick_handler);
 
-    batt_handler(battery_state_service_peek());
-    battery_state_service_subscribe(batt_handler);
+    if (s_settings->show_battery) {
+        batt_handler(battery_state_service_peek());
+        battery_state_service_subscribe(batt_handler);
+    }
 }
 
 static void window_unload(Window *window) {
@@ -59,6 +119,7 @@ static void window_unload(Window *window) {
     time_layer_destroy(s_time_layer);
     tick_layer_destroy(s_tick_layer);
 
+    sync_deinit();
     settings_free(s_settings);
 }
 

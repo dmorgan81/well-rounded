@@ -10,6 +10,20 @@
   "watchapp": {
     "watchface": true
   },
+  "capabilities": [
+      "configurable"
+  ],
+  "appKeys": {
+      "ColorBackground": 0,
+      "ColorHandTicks": 1,
+      "ColorHandHour": 2,
+      "ColorHandMinute": 3,
+      "ColorHandSecond": 4,
+      "ColorBattery": 5,
+      "ShowTicks": 6,
+      "ShowSecondHand": 7,
+      "ShowBattery": 8
+  },
   "resources": {
     "media": []
   }

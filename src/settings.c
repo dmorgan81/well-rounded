@@ -12,7 +12,10 @@ Settings *settings_load() {
         settings->color_hour_hand = PBL_IF_COLOR_ELSE(GColorRed, GColorWhite);
         settings->color_minute_hand = GColorLightGray;
         settings->color_second_hand = GColorWhite;
-        settings->color_battery = PBL_IF_COLOR_ELSE(GColorIslamicGreen, GColorDarkGray);
+        settings->color_battery = PBL_IF_COLOR_ELSE(GColorIslamicGreen, GColorLightGray);
+        settings->show_ticks = true;
+        settings->show_second_hand = false;
+        settings->show_battery = true;
         settings_save(settings);
     } else {
         persist_read_data(SETTINGS_DATA_KEY, settings, sizeof(Settings));

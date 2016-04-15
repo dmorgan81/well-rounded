@@ -90,5 +90,7 @@ void time_layer_set_settings(TimeLayer *this, Settings *settings) {
     hand_layer_set_color(internal->minute_hand_layer, settings->color_minute_hand);
     hand_layer_set_color(internal->second_hand_layer, settings->color_second_hand);
 
+    layer_set_hidden(internal->second_hand_layer, !settings->show_second_hand);
+
     layer_mark_dirty(this);
 }

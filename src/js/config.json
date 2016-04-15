@@ -1,0 +1,99 @@
+[
+    {
+        "type": "section",
+        "items": [
+            {
+                "type": "heading",
+                "defaultValue": "Background"
+            },
+            {
+                "type": "color",
+                "appKey": "ColorBackground",
+                "label": "Background Color",
+                "sunny": false,
+                "defaultValue": "000000",
+                "allowGray": true
+            },
+            {
+                "type": "toggle",
+                "appKey": "ShowTicks",
+                "label": "Show Ticks",
+                "defaultValue": true
+            },
+            {
+                "type": "color",
+                "appKey": "ColorHandTicks",
+                "label": "Tick Color",
+                "defaultValue": "AAAAAA",
+                "sunny": false,
+                "allowGray": true
+            }
+        ]
+    },
+    {
+        "type": "section",
+        "items": [
+            {
+                "type": "heading",
+                "defaultValue": "Time"
+            },
+            {
+                "type": "color",
+                "appKey": "ColorHandHour",
+                "label": "Hour Hand Color",
+                "defaultValue": "FF0000",
+                "sunny": false,
+                "allowGray": false
+            },
+            {
+                "type": "color",
+                "appKey": "ColorHandMinute",
+                "label": "Minute Hand Color",
+                "defaultValue": "AAAAAA",
+                "sunny": false,
+                "allowGray": false
+            },
+            {
+                "type": "toggle",
+                "appKey": "ShowSecondHand",
+                "label": "Show Second Hand",
+                "defaultValue": false
+            },
+            {
+                "type": "color",
+                "appKey": "ColorHandSecond",
+                "label": "Second Hand Color",
+                "defaultValue": "FFFFFF",
+                "sunny": false,
+                "allowGray": false
+            }
+        ]
+    },
+    {
+        "type": "section",
+        "items": [
+            {
+                "type": "heading",
+                "defaultValue": "Battery"
+            },
+            {
+                "type": "toggle",
+                "appKey": "ShowBattery",
+                "label": "Show Battery",
+                "defaultValue": true
+            },
+            {
+                "type": "color",
+                "appKey": "ColorBattery",
+                "label": "Battery Color",
+                "defaultValue": "00AA00",
+                "sunny": false,
+                "allowGray": true
+            }
+        ]
+    },
+    {
+        "type": "submit",
+        "defaultValue": "Save"
+    }
+]
