@@ -25,7 +25,9 @@
       "ShowSecondHand": 7,
       "ShowBattery": 8,
       "ColorHealth": 9,
-      "ShowHealth": 10
+      "ShowHealth": 10,
+      "ColorConnectionLost": 11,
+      "VibeConnectionLost": 12
   },
   "resources": {
     "media": []

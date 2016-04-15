@@ -11,6 +11,7 @@ static Settings *s_settings;
 static TickLayer *s_tick_layer;
 #ifdef PBL_HEALTH
 static RadialLayer *s_health_layer;
+static bool s_connected = true;
 #endif
 static RadialLayer *s_batt_layer;
 static TimeLayer *s_time_layer;
@@ -45,6 +46,28 @@ static void health_handler(HealthEventType event, void *context) {
             radial_layer_set_value(s_health_layer, sum);
         }
     }
+}
+#endif
+
+#ifdef PBL_COLOR
+static void conn_handler(bool connected) {
+    logd("%s", __func__);
+    window_set_background_color(s_window, connected ? s_settings->color_background : s_settings->color_connection_lost);
+    switch (s_settings->vibe_connection_lost) {
+        case ConnectionVibeNone:
+            return;
+            break;
+        case ConnectionVibeDisconnect:
+            if (!connected) {
+                vibes_double_pulse();
+            }
+            break;
+        case ConnectionVibeDisconnectAndReconnect:
+            if (connected != s_connected) {
+                vibes_double_pulse();
+            }
+    }
+    s_connected = connected;
 }
 #endif
 
@@ -112,6 +135,16 @@ static void sync_handler(const uint32_t key, const Tuple *new_tuple, const Tuple
             }
             break;
 #endif
+#ifdef PBL_COLOR
+        case AppKeyColorConnectionLost:
+            s_settings->color_connection_lost = GColorFromHEX(new_tuple->value->uint32);
+            break;
+        case AppKeyVibeConnectionLost:
+            // WTF? Why -48? Clay sends the enum as a character value.
+            // Subtracting 48 gets the value range we want.
+            s_settings->vibe_connection_lost = new_tuple->value->uint8 - 48;
+            break;
+#endif
     }
     settings_save(s_settings);
 }
@@ -166,6 +199,13 @@ static void window_load(Window *window) {
         layer_set_hidden(s_health_layer, true);
     }
 #endif
+
+#ifdef PBL_COLOR
+    conn_handler(connection_service_peek_pebble_app_connection());
+    connection_service_subscribe((ConnectionHandlers) {
+        .pebble_app_connection_handler = conn_handler
+    });
+#endif
 }
 
 static void window_unload(Window *window) {
@@ -176,6 +216,10 @@ static void window_unload(Window *window) {
 #ifdef PBL_HEALTH
     health_service_events_unsubscribe();
     radial_layer_destroy(s_health_layer);
+#endif
+
+#ifdef PBL_COLOR
+    connection_service_unsubscribe();
 #endif
 
     radial_layer_destroy(s_batt_layer);

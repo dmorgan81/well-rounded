@@ -20,6 +20,10 @@ Settings *settings_load() {
         settings->color_health = GColorBlueMoon;
         settings->show_health = true;
 #endif
+#ifdef PBL_COLOR
+        settings->color_connection_lost = GColorIndigo;
+        settings->vibe_connection_lost = ConnectionVibeDisconnect;
+#endif
         settings_save(settings);
     } else {
         persist_read_data(SETTINGS_DATA_KEY, settings, sizeof(Settings));

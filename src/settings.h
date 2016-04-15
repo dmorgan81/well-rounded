@@ -6,6 +6,12 @@
 #define SETTINGS_DATA_KEY 1
 
 typedef enum {
+    ConnectionVibeNone = 0,
+    ConnectionVibeDisconnect,
+    ConnectionVibeDisconnectAndReconnect
+} SettingConnectionVibe;
+
+typedef enum {
     AppKeyColorBackground = 0,
     AppKeyColorTicks,
     AppKeyColorHandHour,
@@ -18,6 +24,10 @@ typedef enum {
 #ifdef PBL_HEALTH
     AppKeyColorHealth,
     AppKeyShowHealth,
+#endif
+#ifdef PBL_COLOR
+    AppKeyColorConnectionLost,
+    AppKeyVibeConnectionLost,
 #endif
 } SettingAppKeys;
 
@@ -43,6 +53,11 @@ typedef struct {
 #ifdef PBL_HEALTH
     GColor color_health;
     bool show_health;
+#endif
+
+#ifdef PBL_COLOR
+    GColor color_connection_lost;
+    SettingConnectionVibe vibe_connection_lost;
 #endif
     /* END SETTINGS_VERSION 1 */
 } Settings;
