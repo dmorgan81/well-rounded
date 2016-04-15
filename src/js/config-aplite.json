@@ -11,7 +11,8 @@
                 "appKey": "ColorBackground",
                 "label": "Background Color",
                 "sunlight": false,
-                "defaultValue": "000000"
+                "defaultValue": "000000",
+                "allowGray": true
             },
             {
                 "type": "toggle",
@@ -24,7 +25,8 @@
                 "appKey": "ColorHandTicks",
                 "label": "Tick Color",
                 "defaultValue": "AAAAAA",
-                "sunlight": false
+                "sunlight": false,
+                "allowGray": true
             }
         ]
     },
@@ -39,15 +41,17 @@
                 "type": "color",
                 "appKey": "ColorHandHour",
                 "label": "Hour Hand Color",
-                "defaultValue": "FF0000",
-                "sunlight": false
+                "defaultValue": "FFFFFF",
+                "sunlight": false,
+                "allowGray": false
             },
             {
                 "type": "color",
                 "appKey": "ColorHandMinute",
                 "label": "Minute Hand Color",
                 "defaultValue": "AAAAAA",
-                "sunlight": false
+                "sunlight": false,
+                "allowGray": false
             },
             {
                 "type": "toggle",
@@ -60,7 +64,8 @@
                 "appKey": "ColorHandSecond",
                 "label": "Second Hand Color",
                 "defaultValue": "FFFFFF",
-                "sunlight": false
+                "sunlight": false,
+                "allowGray": false
             }
         ]
     },
@@ -82,66 +87,8 @@
                 "appKey": "ColorBattery",
                 "label": "Battery Color",
                 "defaultValue": "00AA00",
-                "sunlight": false
-            }
-        ]
-    },
-    {
-        "type": "section",
-        "items": [
-            {
-                "type": "heading",
-                "defaultValue": "Bluetooth"
-            },
-            {
-                "type": "radiogroup",
-                "appKey": "VibeConnectionLost",
-                "label": "Vibrate",
-                "defaultValue": "1",
-                "options": [
-                    {
-                        "label": "On Disconnect",
-                        "value": "1"
-                    },
-                    {
-                        "label": "On Disconnect & Reconnect",
-                        "value": "2"
-                    },
-                    {
-                        "label": "Neither",
-                        "value": "0"
-                    }
-                ]
-            },
-            {
-                "type": "color",
-                "appKey": "ColorConnectionLost",
-                "label": "Connection Lost Color",
-                "description": "Background color when connection lost",
-                "defaultValue": "5500AA",
-                "sunlight": false
-            }
-        ]
-    },
-    {
-        "type": "section",
-        "items": [
-            {
-                "type": "heading",
-                "defaultValue": "Health"
-            },
-            {
-                "type": "toggle",
-                "appKey": "ShowHealth",
-                "label": "Show Health",
-                "defaultValue": true
-            },
-            {
-                "type": "color",
-                "appKey": "ColorHealth",
-                "label": "Health Color",
-                "defaultValue": "0055FF",
-                "sunlight": false
+                "sunlight": false,
+                "allowGray": true
             }
         ]
     },
