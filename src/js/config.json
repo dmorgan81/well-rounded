@@ -93,6 +93,29 @@
         ]
     },
     {
+        "type": "section",
+        "id": "section-health",
+        "items": [
+            {
+                "type": "heading",
+                "defaultValue": "Health"
+            },
+            {
+                "type": "toggle",
+                "appKey": "ShowHealth",
+                "label": "Show Health",
+                "defaultValue": true
+            },
+            {
+                "type": "color",
+                "appKey": "ColorHealth",
+                "label": "Health Color",
+                "defaultValue": "0055FF",
+                "sunny": false
+            }
+        ]
+    },
+    {
         "type": "submit",
         "defaultValue": "Save"
     }

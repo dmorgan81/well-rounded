@@ -15,6 +15,10 @@ typedef enum {
     AppKeyShowTicks,
     AppKeyShowSecondHand,
     AppKeyShowBattery,
+#ifdef PBL_HEALTH
+    AppKeyColorHealth,
+    AppKeyShowHealth,
+#endif
 } SettingAppKeys;
 
 /*
@@ -35,6 +39,11 @@ typedef struct {
     bool show_ticks;
     bool show_second_hand;
     bool show_battery;
+
+#ifdef PBL_HEALTH
+    GColor color_health;
+    bool show_health;
+#endif
     /* END SETTINGS_VERSION 1 */
 } Settings;
 

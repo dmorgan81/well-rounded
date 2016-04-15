@@ -16,6 +16,10 @@ Settings *settings_load() {
         settings->show_ticks = true;
         settings->show_second_hand = false;
         settings->show_battery = true;
+#ifdef PBL_HEALTH
+        settings->color_health = GColorBlueMoon;
+        settings->show_health = true;
+#endif
         settings_save(settings);
     } else {
         persist_read_data(SETTINGS_DATA_KEY, settings, sizeof(Settings));

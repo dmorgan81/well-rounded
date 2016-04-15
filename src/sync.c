@@ -23,6 +23,10 @@ void sync_init(Settings *settings, AppSyncTupleChangedCallback sync_changed_hand
         TupletInteger(AppKeyShowTicks, settings->show_ticks),
         TupletInteger(AppKeyShowSecondHand, settings->show_second_hand),
         TupletInteger(AppKeyShowBattery, settings->show_battery),
+#ifdef PBL_HEALTH
+        TupletInteger(AppKeyColorHealth, settings->color_health.argb),
+        TupletInteger(AppKeyShowHealth, settings->show_health),
+#endif
     };
 
     app_sync_init(&s_sync, s_sync_buffer, sizeof(s_sync_buffer), initial_values, ARRAY_LENGTH(initial_values),

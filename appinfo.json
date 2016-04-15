@@ -11,7 +11,8 @@
     "watchface": true
   },
   "capabilities": [
-      "configurable"
+      "configurable",
+      "health"
   ],
   "appKeys": {
       "ColorBackground": 0,
@@ -22,7 +23,9 @@
       "ColorBattery": 5,
       "ShowTicks": 6,
       "ShowSecondHand": 7,
-      "ShowBattery": 8
+      "ShowBattery": 8,
+      "ColorHealth": 9,
+      "ShowHealth": 10
   },
   "resources": {
     "media": []
