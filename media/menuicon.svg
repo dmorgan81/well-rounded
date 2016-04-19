@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="324"
+   height="384"
+   viewBox="0 0 324 384"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="menuicon.svg"
+   inkscape:export-filename="/home/david/code/well-rounded/resources/menuicon.png"
+   inkscape:export-xdpi="7.5"
+   inkscape:export-ydpi="7.5">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.6167702"
+     inkscape:cx="55.211841"
+     inkscape:cy="198.641"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1064"
+     inkscape:window-x="0"
+     inkscape:window-y="16"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3336" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Background"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-668.36227)"
+     style="display:inline">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:14.38592243;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4189"
+       width="340"
+       height="400.00003"
+       x="-10"
+       y="657.36224"
+       inkscape:export-filename="/home/david/code/well-rounded/resources/menuicon.png"
+       inkscape:export-xdpi="6.8652153"
+       inkscape:export-ydpi="6.8652153"
+       ry="28.876125" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Battery">
+    <path
+       style="fill:#00aa00;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path4146"
+       d="M -48.999969,222.99811 A 113.00003,118.99811 0 0 1 -161.90411,341.99617 113.00003,118.99811 0 0 1 -274.99987,223.20006 113.00003,118.99811 0 0 1 -162.28766,104.00039 L -162,222.99811 Z"
+       sodipodi:type="arc"
+       sodipodi:start="0"
+       sodipodi:end="4.7098433"
+       sodipodi:ry="118.99811"
+       sodipodi:rx="113.00003"
+       sodipodi:cy="222.99811"
+       sodipodi:cx="-162"
+       transform="scale(-1,1)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Center circle">
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.68083841;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4153"
+       cy="223"
+       cx="162"
+       r="59.65958" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Minute Hand">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:15.77576256;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4162"
+       width="12.490002"
+       height="198.58035"
+       x="155.75499"
+       y="27.047628"
+       ry="8.2423382"
+       rx="6.2450008" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Hour Hand">
+    <g
+       id="g4164"
+       transform="matrix(0.98801735,0,0,1.0015028,7.7672055,-0.33513486)">
+      <rect
+         ry="5.6169028"
+         transform="matrix(0,1,-1,0,0,0)"
+         y="-289.61691"
+         x="217.3831"
+         height="133.23381"
+         width="11.233806"
+         id="rect4155"
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:15;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         ry="22.552582"
+         rx="21.052582"
+         cy="223"
+         cx="156"
+         id="path4159"
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:10.89483929;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

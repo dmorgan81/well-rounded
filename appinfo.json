@@ -33,6 +33,13 @@
       "ShowDate": 15
   },
   "resources": {
-    "media": []
+    "media": [
+      {
+                "file": "menuicon.png",
+                "menuIcon": true,
+                "name": "MENU_ICON",
+                "type": "bitmap"
+            }
+    ]
   }
 }
