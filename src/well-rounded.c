@@ -5,6 +5,7 @@
 #include "layers/tick_layer.h"
 #include "layers/time_layer.h"
 #include "layers/radial_layer.h"
+#include "layers/date_layer.h"
 
 static Window *s_window;
 static Settings *s_settings;
@@ -15,10 +16,11 @@ static bool s_connected = true;
 #endif
 static RadialLayer *s_batt_layer;
 static TimeLayer *s_time_layer;
+static DateLayer *s_date_layer;
 
 static void tick_handler(struct tm* tick_time, TimeUnits units_changed) {
     logd("%s", __func__);
-    layer_mark_dirty(s_time_layer);
+    layer_mark_dirty(window_get_root_layer(s_window));
 }
 
 static void batt_handler(BatteryChargeState charge) {
@@ -150,6 +152,18 @@ static void sync_handler(const uint32_t key, const Tuple *new_tuple, const Tuple
             s_settings->vibe_connection_lost = new_tuple->value->uint8 - 48;
             break;
 #endif
+        case AppKeyColorDate:
+            s_settings->color_date = GColorFromHEX(new_tuple->value->uint32);
+            date_layer_set_settings(s_date_layer, s_settings);
+            break;
+        case AppKeyDirectionDate:
+            s_settings->direction_date = new_tuple->value->uint8 - 48;
+            date_layer_set_settings(s_date_layer, s_settings);
+            break;
+        case AppKeyShowDate:
+            s_settings->show_date = new_tuple->value->uint8;
+            date_layer_set_settings(s_date_layer, s_settings);
+            break;
     }
     settings_save(s_settings);
 }
@@ -185,7 +199,11 @@ static void window_load(Window *window) {
     layer_set_hidden(s_health_layer, !s_settings->show_health);
 #endif
 
+    s_date_layer = date_layer_create(bounds);
+    date_layer_set_settings(s_date_layer, s_settings);
+
     layer_add_child(root_layer, s_tick_layer);
+    layer_add_child(root_layer, s_date_layer);
 #ifdef PBL_HEALTH
     layer_add_child(root_layer, s_health_layer);
 #endif
@@ -230,6 +248,7 @@ static void window_unload(Window *window) {
     radial_layer_destroy(s_batt_layer);
     time_layer_destroy(s_time_layer);
     tick_layer_destroy(s_tick_layer);
+    date_layer_destroy(s_date_layer);
 
     sync_deinit();
     settings_free(s_settings);

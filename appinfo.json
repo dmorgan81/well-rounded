@@ -27,7 +27,10 @@
       "ColorHealth": 9,
       "ShowHealth": 10,
       "ColorConnectionLost": 11,
-      "VibeConnectionLost": 12
+      "VibeConnectionLost": 12,
+      "ColorDate": 13,
+      "DirectionDate": 14,
+      "ShowDate": 15
   },
   "resources": {
     "media": []

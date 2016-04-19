@@ -31,6 +31,9 @@ void sync_init(Settings *settings, AppSyncTupleChangedCallback sync_changed_hand
         TupletInteger(AppKeyColorConnectionLost, settings->color_connection_lost.argb),
         TupletInteger(AppKeyVibeConnectionLost, settings->vibe_connection_lost),
 #endif
+        TupletInteger(AppKeyColorDate, settings->color_date.argb),
+        TupletInteger(AppKeyDirectionDate, settings->direction_date),
+        TupletInteger(AppKeyShowDate, settings->show_date),
     };
 
     app_sync_init(&s_sync, s_sync_buffer, sizeof(s_sync_buffer), initial_values, ARRAY_LENGTH(initial_values),

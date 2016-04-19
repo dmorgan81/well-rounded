@@ -2,7 +2,7 @@
 #include <pebble.h>
 
 #define SETTINGS_VERSION_KEY 0
-#define SETTINGS_VERSION 1
+#define SETTINGS_VERSION 2
 #define SETTINGS_DATA_KEY 1
 
 typedef enum {
@@ -10,6 +10,14 @@ typedef enum {
     ConnectionVibeDisconnect,
     ConnectionVibeDisconnectAndReconnect
 } SettingConnectionVibe;
+
+typedef enum {
+    DateNorth = 0,
+    DateFollowMonth = 1,
+    DateEast = 3,
+    DateSouth = 6,
+    DateWest = 9
+} SettingDateDirection;
 
 typedef enum {
     AppKeyColorBackground = 0,
@@ -29,6 +37,9 @@ typedef enum {
     AppKeyColorConnectionLost,
     AppKeyVibeConnectionLost,
 #endif
+    AppKeyColorDate,
+    AppKeyDirectionDate,
+    AppKeyShowDate,
 } SettingAppKeys;
 
 /*
@@ -60,6 +71,11 @@ typedef struct {
     SettingConnectionVibe vibe_connection_lost;
 #endif
     /* END SETTINGS_VERSION 1 */
+    /* BEGIN SETTINGS_VERSION 2 */
+    GColor color_date;
+    SettingDateDirection direction_date;
+    bool show_date;
+    /* END SETTINGS_VERSION 2 */
 } Settings;
 
 Settings *settings_load();

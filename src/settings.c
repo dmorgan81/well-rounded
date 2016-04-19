@@ -24,11 +24,21 @@ Settings *settings_load() {
         settings->color_connection_lost = GColorIndigo;
         settings->vibe_connection_lost = ConnectionVibeDisconnect;
 #endif
+        settings->color_date = GColorWhite;
+        settings->direction_date = DateEast;
+        settings->show_date = true;
         settings_save(settings);
     } else {
         persist_read_data(SETTINGS_DATA_KEY, settings, sizeof(Settings));
     }
 
+    if (version == 1) {
+        persist_read_data(SETTINGS_DATA_KEY, settings, sizeof(Settings));
+        settings->color_date = GColorWhite;
+        settings->direction_date = DateEast;
+        settings->show_date = true;
+        settings_save(settings);
+    }
     return settings;
 }
 
