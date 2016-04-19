@@ -89,34 +89,6 @@
                 "defaultValue": "FFFFFF",
                 "sunlight": false,
                 "allowGray": false
-            },
-            {
-                "type": "radiogroup",
-                "appKey": "DirectionDate",
-                "label": "Date Location",
-                "defaultValue": "3",
-                "options": [
-                    {
-                        "label": "Follow Month",
-                        "value": "1"
-                    },
-                    {
-                        "label": "North",
-                        "value": "0"
-                    },
-                    {
-                        "label": "South",
-                        "value": "6"
-                    },
-                    {
-                        "label": "East",
-                        "value": "3"
-                    },
-                    {
-                        "label": "West",
-                        "value": "9"
-                    }
-                ]
             }
         ]
     },

@@ -156,10 +156,12 @@ static void sync_handler(const uint32_t key, const Tuple *new_tuple, const Tuple
             s_settings->color_date = GColorFromHEX(new_tuple->value->uint32);
             date_layer_set_settings(s_date_layer, s_settings);
             break;
+#ifdef PBL_COLOR
         case AppKeyDirectionDate:
             s_settings->direction_date = new_tuple->value->uint8 - 48;
             date_layer_set_settings(s_date_layer, s_settings);
             break;
+#endif
         case AppKeyShowDate:
             s_settings->show_date = new_tuple->value->uint8;
             date_layer_set_settings(s_date_layer, s_settings);
